@@ -1,6 +1,10 @@
 name='Игорек'
 print(name)
-name='age, 60'
+age=60
+print(age)
+print(age+1)
+
+
 
 
 
