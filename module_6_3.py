@@ -33,6 +33,13 @@ class Animal:  # создаем класс Animal
             print("...")  # выводим многоточие, если звук отсутствует
 
 
+class PoisonousAnimal(Animal):  # создаем класс PoisonousAnimal, наследуемый от Animal
+    _DEGREE_OF_DANGER = 8  # степень опасности равна 8
+
+    def attack(self):  # переопределяем метод атаки
+        print("Be careful, i'm attacking you 0_0")  # утконос атакует
+
+
 class Bird(Animal):  # создаем класс Bird, наследуемый от Animal
     beak = True  # наличие клюва
 
@@ -50,12 +57,11 @@ class AquaticAnimal(Animal):  # создаем класс AquaticAnimal, нас�
             self._cords[2] = 0  # если меньше, устанавливаем в 0
 
 
-class PoisonousAnimal(Animal):  # создаем класс PoisonousAnimal, наследуемый от Animal
-    _DEGREE_OF_DANGER = 8  # степень опасности равна 8
-
-
-class Duckbill(Bird, AquaticAnimal, PoisonousAnimal):  # создаем класс Duckbill, наследуемый от Bird, AquaticAnimal и PoisonousAnimal
+class Duckbill(PoisonousAnimal, Bird, AquaticAnimal):  # создаем класс Duckbill, наследуемый от PoisonousAnimal, Bird и AquaticAnimal
     sound = "Click-click-click"  # звук, издаваемый утконосом
+
+    def attack(self):  # переопределяем метод атаки
+        super().attack()  # вызываем метод attack из PoisonousAnimal, так как он первый в MRO
 
 
 # Пример использования
@@ -73,5 +79,6 @@ db.dive_in(6)  # вызываем метод dive_in для ныряния
 db.get_cords()  # выводим текущие координаты
 
 db.lay_eggs()  # вызываем метод lay_eggs
+
 
 
